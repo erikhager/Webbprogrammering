@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <link rel="stylesheet" type="text/css" href="/static/client.css">
+  <script src="/static/client.js"></script>
+  <script src="/static/serverstub.js"></script>
+
+  <script type=”text/view” id="welcomeview">
+  <p id ="demo"></p>
+  <title>Client</title>
+
+  <div class="grid-container">
+    <div class ="img">
+      <img src="/static/wimage.png" alt="Twidder Picture">
+    </div>
+  <div class="login">
+        <br>
+      <form action="javascript:logIn();">
+        <div class="div_input">
+        <label>Email</label>
+        <input type="email" id="login_email" name="email" required>
+      </div>
+      <div class="div_input">
+        <label>Password</label>
+        <input type="password" id="login_password" name="pwd" minlength="4" required>
+        </div>
+        <input type="submit" value="Login">
+        <p id ="login_res"></p>
+      </form>
+    </div>
+
+    <div class="signup">
+      <form action="javascript:submitRegistration(event);">
+        <br>
+        <div class="div_input">
+        <label for="fname">First name</label>
+        <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="div_input">
+        <label for="lname">Family name</label>
+        <input type="text" id="lname" name="lname" required>
+      </div>
+      <div class="div_input">
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="div_input">
+        <br>
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required>
+      </div>
+      <br>
+      <div class="div_input">
+        <label  for="country">Country</label>
+        <input type="text" id="country" name="country" required>
+      </div>
+      <div class="div_input">
+        <label  for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="div_input">
+        <label for="password">Password</label>
+        <input type="password" id="psw1" name="password" minlength="4" required>
+      </div>
+      <div class="div_input">
+        <label for="repeat-password">Repeat PSW</label>
+        <input type="password" id="psw2" name="repeat-password" minlength="4" required>
+        <input type="submit" value="Sign up">
+      </div>
+      <p id ="signup_res"></p>
+      </form>
+    </div>
+  </div>
+  </script>
+
+  <script type=”text/view” id="profileview">
+  <div class="tab">
+    <button class="tablinks active" onclick="openView(event, 'Home')">Home</button>
+    <button class="tablinks" onclick="openView(event, 'Browse')">Browse</button>
+    <button class="tablinks" onclick="openView(event, 'Account')">Account</button>
+  </div>
+  <button onclick="logOut()">Sign out</button>
+
+
+  <div id="Home" class="tabcontent" style=display:block>
+      <p id="disp_fname"></p>
+      <p id="disp_lname"></p>
+      <p id="disp_gender"></p>
+      <p id="disp_city"></p>
+      <p id="disp_country"></p>
+      <p id="disp_email"></p>
+    <form action="javascript:postMsg(event);">
+      <textarea id="wall_msg"></textarea>
+      <br>
+      <input type="submit" id="post" value="Post">
+      <br>
+    </form>
+    <br>
+    <button onclick="getMsg()">Reload messages</button>
+    <br>
+    <p id="post_msg"></p>
+  </div>
+
+
+  <div id="Browse" class="tabcontent">
+  <h3>Browse</h3>
+  <form action="javascript:browseUser(event);">
+    <input id="browse_user"></input>
+    <br>
+    <br>
+    <input type="submit" id="search" value="Search">
+    <br>
+  </form>
+
+  
+  <p id="browse_fail"></p>
+  <div id="browse_res" style="display: none;">
+  <p id="browse_fname"></p>
+  <p id="browse_lname"></p>
+  <p id="browse_gender"></p>
+  <p id="browse_city"></p>
+  <p id="browse_country"></p>
+  <p id="browse_email"></p>
+  <form action="javascript: postMsgBrowse(event);">
+    <textarea id="browse_wall_msg"></textarea>
+    <br>
+    <input type="submit" id="browse_submit" value="Post">
+    <br>
+  </form>
+  <br>
+  <button onclick="getBrowseMsg()">Reload messages</button>
+  <br>
+  <p id="browse_post"></p>
+  </div>
+  </div>
+
+
+  <div id="Account" class="tabcontent">
+    <h3>Account</h3>
+    <form action="javascript:changePsw(event);">
+    <div class="div_input">
+      <label for="password">Password</label>
+      <input type="password" id="old_psw" name="password" minlength="4" required>
+    </div>
+    <div class="div_input">
+      <label for="password">New Password</label>
+      <input type="password" id="new_psw1" name="password" minlength="4" required>
+    </div>
+    <div class="div_input">
+      <label for="password">Repeat Password</label>
+      <input type="password" id="new_psw2" name="password" minlength="4" required>
+      <input type="submit" value="Update password">
+    </div>
+    <p id ="change_psw"></p>
+    </form>
+    <button onclick="logOut()">Sign out</button>
+  </div>
+  </script>
+</head>
+
+<body onload="loadView()">
+  <div id="display_view"></div>
+
+</body>
+
+
+</html>
