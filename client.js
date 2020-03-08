@@ -1,4 +1,3 @@
-
 var tokenGlobal = 1;
 
 function loadView() {
